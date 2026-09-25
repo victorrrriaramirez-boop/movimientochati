@@ -1,26 +1,38 @@
-# UMBRA — web de restaurante
+# Altagracia — web con scrolltelling
 
-Web demostrativa de una sola página, en español, con apertura cinematográfica, partículas animadas, escenas fijadas durante el desplazamiento, transición de portal, tipografía cinética, profundidad fotográfica y botones reactivos al cursor. Tiene diseño adaptable y respeta la opción del dispositivo de reducir movimiento. No requiere instalación ni compilación.
+Web estática basada en el archivo `index(4).html` facilitado. Mantiene el nombre, la ubicación en Valdemoro, la propuesta de cocina peruana y mediterránea y los 29 platos con descripciones y precios del documento original.
 
-## Antes de publicarla
+## Qué incluye
 
-Sustituye «UMBRA» y los textos de ejemplo por los datos reales del restaurante. En `index.html`, cambia `reservas@ejemplo.com` por el correo de reservas real; el botón actual abre una solicitud por correo y no confirma mesas ni incorpora un sistema de reservas. Confirma ciudad, carta, horarios, dirección, redes y textos legales antes de añadirlos. Las fotografías se cargan desde Unsplash; para una web definitiva, sustitúyelas por fotos propias y revisa sus condiciones de uso.
+- Apertura cinematográfica, partículas y movimiento de portada.
+- Tres escenas fotográficas que cambian durante el desplazamiento.
+- Transición hacia la carta mediante una ventana que se expande.
+- Aparición progresiva de títulos, bloques y platos; barra de progreso, menú móvil y detalles de interacción con el cursor.
+- Adaptación a móvil y tratamiento específico para `prefers-reduced-motion`.
+- HTML, CSS y JavaScript sin compilación ni dependencias de código externas.
 
-## Publicar en GitHub y Vercel
+## Archivos
 
-1. Descomprime el ZIP. En GitHub, crea un repositorio nuevo e incorpora los tres archivos (`index.html`, `styles.css` y `script.js`) junto con este README en la raíz del repositorio. Puedes usar **Add file → Upload files → Commit changes**.
-2. En [Vercel](https://vercel.com/new), selecciona **Import Git Repository**, conecta GitHub si se solicita y elige ese repositorio.
-3. Mantén el directorio raíz como `./`. Vercel detecta una página HTML estática: no hace falta comando de compilación ni instalar dependencias. Pulsa **Deploy**.
-4. Para añadir un dominio, entra en **Project → Settings → Domains** y sigue las instrucciones DNS que muestre Vercel. Cada cambio enviado a la rama de producción generará una nueva versión.
+- `index.html`: contenido y carta.
+- `motion.css`: estilo y efectos añadidos al diseño del documento.
+- `motion.js`: secuencias ligadas al scroll e interacciones.
 
-## Modificar imágenes y colores
+## Antes de publicar
 
-Las cuatro URLs de imágenes están en `styles.css`: `.hero-image`, `.portal-image`, `.dish-photo` y `.space-photo`. El color de acento está en la variable `--accent`. El archivo `script.js` controla las escenas, las partículas y los efectos de desplazamiento. Todas las animaciones se ejecutan en el navegador; no se necesitan servicios externos, aparte de las imágenes y fuentes indicadas.
+1. Revisa la carta y los precios vigentes. Se han trasladado del documento adjunto sin modificarlos.
+2. El logo del HTML recibido apuntaba a `assets/logo-altagracia.png`, pero el archivo no venía adjunto. Lo he sustituido por un nombre tipográfico. Si dispones del logo oficial, incorpóralo y cambia el elemento `.brand-wordmark`.
+3. Las fotos se cargan desde las direcciones que venían en el HTML original. Para una publicación definitiva, conviene sustituirlas por archivos de Altagracia autorizados y alojados dentro del proyecto. Si cambian las direcciones externas, podrían dejar de mostrarse.
+4. La reserva online está pendiente de un proveedor real; la web lo indica y no simula confirmaciones ni disponibilidad.
+5. Confirma los textos legales y cualquier dato comercial antes de utilizar el sitio públicamente.
+
+## Subir a GitHub y conectar con Vercel
+
+1. Descomprime el ZIP y crea un repositorio nuevo en GitHub.
+2. Sube los cuatro archivos del proyecto a la raíz con **Add file → Upload files → Commit changes**. No subas solamente `index.html`: necesita también `motion.css` y `motion.js`.
+3. En [Vercel](https://vercel.com/new), pulsa **Import Git Repository**, conecta GitHub y selecciona el repositorio.
+4. Mantén el directorio raíz como `./`; no hace falta framework ni comando de compilación. Pulsa **Deploy**.
+5. Si tienes dominio, añádelo en **Project → Settings → Domains** y aplica los registros DNS que te indique Vercel.
 
 ## Vista local
 
-Abre `index.html` en un navegador o ejecuta `python3 -m http.server 8000` desde esta carpeta y visita `http://localhost:8000`.
-
-## Referencias visuales
-
-Inspiración de composición oscura y tipografía monumental: Refero Styles. Inspiración de movimiento y narrativa visual: Lusion, Active Theory y Unseen. Esta implementación es una propuesta original, no una reproducción de sus recursos o código.
+Desde esta carpeta, ejecuta `python3 -m http.server 8000` y abre `http://localhost:8000`.

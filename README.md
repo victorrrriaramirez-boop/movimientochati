@@ -1,6 +1,6 @@
 # UMBRA — web de restaurante
 
-Web demostrativa de una sola página, en español, con animaciones ligadas al desplazamiento, fotografía a pantalla completa, diseño adaptable y opción de movimiento reducido. No requiere instalación ni compilación.
+Web demostrativa de una sola página, en español, con apertura cinematográfica, partículas animadas, escenas fijadas durante el desplazamiento, transición de portal, tipografía cinética, profundidad fotográfica y botones reactivos al cursor. Tiene diseño adaptable y respeta la opción del dispositivo de reducir movimiento. No requiere instalación ni compilación.
 
 ## Antes de publicarla
 
@@ -15,7 +15,7 @@ Sustituye «UMBRA» y los textos de ejemplo por los datos reales del restaurante
 
 ## Modificar imágenes y colores
 
-Las tres URLs de imágenes están en `styles.css`: `.hero-image`, `.dish-photo` y `.space-photo`. El color de acento está en la variable `--accent`. El archivo `script.js` controla la barra de progreso, las apariciones y las transformaciones suaves al desplazarse.
+Las cuatro URLs de imágenes están en `styles.css`: `.hero-image`, `.portal-image`, `.dish-photo` y `.space-photo`. El color de acento está en la variable `--accent`. El archivo `script.js` controla las escenas, las partículas y los efectos de desplazamiento. Todas las animaciones se ejecutan en el navegador; no se necesitan servicios externos, aparte de las imágenes y fuentes indicadas.
 
 ## Vista local
 

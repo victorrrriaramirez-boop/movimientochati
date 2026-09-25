@@ -7,6 +7,8 @@ Web estática basada en el archivo `index(4).html` facilitado. Mantiene el nombr
 - Apertura cinematográfica, partículas y movimiento de portada.
 - Tres escenas fotográficas que cambian durante el desplazamiento.
 - Transición hacia la carta mediante una ventana que se expande.
+- Recorrido horizontal de cuatro capítulos por las categorías de la carta, con enlaces a cada categoría.
+- Fotos y titulares con profundidad, cambios de escala y desplazamiento progresivo; galería con entrada en perspectiva.
 - Aparición progresiva de títulos, bloques y platos; barra de progreso, menú móvil y detalles de interacción con el cursor.
 - Adaptación a móvil y tratamiento específico para `prefers-reduced-motion`.
 - HTML, CSS y JavaScript sin compilación ni dependencias de código externas.

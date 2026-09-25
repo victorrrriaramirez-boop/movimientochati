@@ -9,8 +9,17 @@ const ring=document.querySelector('.transition-ring');
 const hero=document.querySelector('.hero-bg');
 const nav=document.querySelector('.nav');
 const progress=document.querySelector('.scroll-progress');
+const flavours=document.querySelector('.flavours');
+const flavourRail=document.querySelector('.flavours-rail');
+const flavourCards=[...document.querySelectorAll('.flavour-card')];
+const gallery=document.querySelector('#galeria');
+const photoSpread=document.querySelector('.photo-spread');
+const editorial=document.querySelector('.editorial');
+const experience=document.querySelector('#experiencia');
+const menu=document.querySelector('#carta');
+const parallaxHeadings=[...document.querySelectorAll('.intro-grid h2,.editorial h2,.menu-intro h2,.experience-copy h2,.reserve-copy h2')];
 let target=scrollY, smooth=scrollY, ticking=false;
-const range=(el,y)=>{const top=el.getBoundingClientRect().top+y;return clamp((y-top)/Math.max(el.offsetHeight-innerHeight,1))};
+const range=(el,y)=>{const top=el.getBoundingClientRect().top+scrollY;return clamp((y-top)/Math.max(el.offsetHeight-innerHeight,1))};
 function render(){target=scrollY;smooth=motionOff?target:lerp(smooth,target,.13);if(Math.abs(smooth-target)<.4)smooth=target;
  const max=document.documentElement.scrollHeight-innerHeight;
  progress.style.transform=`scaleX(${max?target/max:0})`;
@@ -19,9 +28,18 @@ function render(){target=scrollY;smooth=motionOff?target:lerp(smooth,target,.13)
  if(!motionOff){
   hero.style.transform=`scale(${1.08+clamp(smooth/innerHeight)*.13}) translateY(${clamp(smooth/innerHeight)*5}%)`;
   const st=range(story,smooth), phase=st*3;
-  panels.forEach((el,i)=>{const diff=Math.abs(phase-(i+.46));const opacity=clamp(1.9-diff*1.45);el.style.opacity=opacity;el.style.transform=`translateY(${(i+.46-phase)*6}%)`;el.querySelector('.story-photo').style.transform=`scale(${1.17-opacity*.1}) translateY(${(phase-i-.46)*3}%)`});
+  panels.forEach((el,i)=>{const diff=Math.abs(phase-(i+.46));const opacity=clamp(1.9-diff*1.45);el.style.opacity=opacity;el.style.transform=`translateY(${(i+.46-phase)*12}%) rotate(${(i+.46-phase)*1.5}deg)`;el.style.clipPath=`inset(${(1-opacity)*20}% ${((1-opacity)*12)}% round ${(1-opacity)*60}px)`;el.querySelector('.story-photo').style.transform=`scale(${1.25-opacity*.18}) translateY(${(phase-i-.46)*6}%)`;el.querySelector('.story-copy').style.transform=`translateY(${(i+.46-phase)*60}px)`});
   document.querySelector('.story-meter span').style.transform=`scaleX(${st})`;
   const pt=range(transition,smooth);portal.style.transform=`scale(${1+pt*8}) rotate(${(pt-.5)*4}deg)`;portal.style.borderRadius=`${48*(1-pt)}% ${48*(1-pt)}% ${4*(1-pt)}% ${4*(1-pt)}%`;ring.style.transform=`scale(${1+pt*1.4})`;
+  const ft=range(flavours,smooth), travel=Math.max(0,flavourRail.scrollWidth-innerWidth+innerWidth*.1);
+  flavourRail.style.transform=`translate3d(${-ft*travel}px,0,0)`;
+  document.querySelector('.flavours-bar i').style.transform=`scaleX(${ft})`;
+  document.querySelector('.flavours-current').textContent=`${String(Math.min(4,Math.floor(ft*4)+1)).padStart(2,'0')} / 04`;
+  flavourCards.forEach((card,i)=>{const relative=Math.abs((i/3)-ft);const emphasis=clamp(1-relative*1.6);card.style.transform=`rotateY(${(i/3-ft)*-11}deg) scale(${.91+emphasis*.09})`;card.style.opacity=String(.63+emphasis*.37);card.querySelector('.flavour-image').style.transform=`scale(${1.18-emphasis*.13}) translateX(${(i/3-ft)*3}%)`});
+  const menuRect=menu.getBoundingClientRect();if(menuRect.top<innerHeight&&menuRect.bottom>0){menu.style.setProperty('--menu-watermark-x',`${clamp((innerHeight-menuRect.top)/(menuRect.height+innerHeight)) * -innerWidth*.25}px`)}
+  parallaxHeadings.forEach(el=>{const rect=el.getBoundingClientRect();if(rect.top<innerHeight*1.3&&rect.bottom>-innerHeight*.3){const offset=clamp((innerHeight*.6-rect.top)/innerHeight,-1,1);el.style.transform=`translateY(${offset*-19}px)`}});
+  [photoSpread,editorial,experience].forEach((section,i)=>{const rect=section.getBoundingClientRect();if(rect.top<innerHeight&&rect.bottom>0){const shift=clamp((innerHeight*.5-rect.top)/innerHeight,-1,1);const image=section.querySelector(i===0?'.photo-large':i===1?'.editorial-image':'.experience-image');if(image)image.style.backgroundPosition=`center ${50+shift*10}%`;if(i===0){section.querySelectorAll(':scope > div').forEach((el,j)=>el.style.transform=`translateY(${shift*(j?32:-32)}px)`)}}});
+  const gr=gallery.getBoundingClientRect();if(gr.top<innerHeight&&gr.bottom>0){const g=clamp((innerHeight-gr.top)/(gr.height+innerHeight));gallery.querySelectorAll('figure').forEach((el,i)=>{const stagger=(i-1);el.style.transform=`translateY(${(1-g)*110 + stagger*(g-.5)*80}px) rotate(${stagger*(1-g)*-8}deg) rotateY(${stagger*(1-g)*-12}deg) scale(${.88+g*.12})`;el.style.opacity=String(clamp(g*2.2))})}
  }
  if(Math.abs(smooth-target)>.4)requestAnimationFrame(render);else ticking=false;
 }
